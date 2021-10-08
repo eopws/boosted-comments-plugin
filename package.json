@@ -1,0 +1,17 @@
+{
+  "name": "boosted-comments",
+  "version": "1.0.0",
+  "description": "plugin for wordpress comments",
+  "main": "index.js",
+  "scripts": {
+    "watch": "node-sass scss/ -o ./css --source-map true --output-style expanded --indent-type tab --indent-width 1 -w"
+  },
+  "author": "xareyli",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.42.1"
+  },
+  "devDependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
