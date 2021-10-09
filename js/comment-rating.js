@@ -2,7 +2,7 @@
 
 (function($) {
     const $ratingInput     = $('#commentrating');
-    const $ratingContainer = $('.bc-comment-rating');
+    const $ratingContainer = $('.bc-comment-form-rating');
 
     if (!$ratingContainer.length) {
         return;
@@ -11,7 +11,7 @@
     $ratingContainer.find('i').mouseover(function(e) {
         let lessStar = $(this);
 
-        while ((lessStar = $(lessStar.prev('.bc-comment-rating__star'))) && lessStar.length) {
+        while ((lessStar = $(lessStar.prev('.bc-comment-form-rating__star'))) && lessStar.length) {
             $(lessStar.find('svg')).attr('fill', '#F00');
         }
 
@@ -30,7 +30,7 @@
         const inputValue = $ratingInput.val();
 
         for (let i = 0; i < 5; i++) {
-            const star      = $($ratingContainer.find('.bc-comment-rating__star')[i]);
+            const star      = $($ratingContainer.find('.bc-comment-form-rating__star')[i]);
             const fillColor = inputValue >= i + 1 ? '#F00' : '#898989';
 
             $(star.find('svg')).attr('fill', fillColor);

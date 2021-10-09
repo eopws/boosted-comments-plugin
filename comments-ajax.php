@@ -15,18 +15,25 @@ add_action('wp_enqueue_scripts', 'bc_enqueue_comments_form_scripts');
 function bc_add_comment() {
     $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
 
+    add_comment_meta($comment->comment_ID, 'rating', $_POST['rating']);
+
     $user            = wp_get_current_user();
     $cookies_consent = ( isset( $_POST['wp-comment-cookies-consent'] ) );
 
     do_action( 'set_comment_cookies', $comment, $user, $cookies_consent );
 
-    wp_list_comments(
-        array(
-            'style'       => 'ol',
-            'short_ping'  => true,
-        ),
-        array( $comment )
+    $list_callback = apply_filters('bc_comments_callback', '');
+
+    $comments_args = array(
+        'style'       => 'ol',
+        'short_ping'  => true,
     );
+
+    if ($list_callback) {
+        $comments_args['callback'] = $list_callback;
+    }
+
+    wp_list_comments($comments_args, array( $comment ));
 
     die;
 }

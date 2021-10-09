@@ -1,10 +1,10 @@
+.bc-comment-form-rating,
 .bc-comment-rating {
     justify-content: center;
     align-items: center;
     display: flex;
 
     &__star {
-        cursor: pointer;
         display: block;
         height: 20px;
         width: 20px;
@@ -13,5 +13,11 @@
             height: 100%;
             width: 100%;
         }
+    }
+}
+
+.bc-comment-form-rating {
+    &__star {
+        cursor: pointer;
     }
 }
