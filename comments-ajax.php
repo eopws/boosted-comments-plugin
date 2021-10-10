@@ -10,7 +10,6 @@ function bc_enqueue_comments_form_scripts() {
     wp_localize_script('bc-ajax-comment-form', 'bcscript', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
     wp_enqueue_script('bc-ajax-comment-form');
 }
-add_action('wp_enqueue_scripts', 'bc_enqueue_comments_form_scripts');
 
 function bc_add_comment() {
     $comment = wp_handle_comment_submission( wp_unslash( $_POST ) );
@@ -37,4 +36,10 @@ function bc_add_comment() {
 
     die;
 }
-add_action( 'wp_ajax_sendcomment', 'bc_add_comment' );
+
+$options = get_option( 'bc_options' );
+
+if (isset($options['bc_field_comments_ajax']) && $options['bc_field_comments_ajax'] === 'on') {
+    add_action( 'wp_ajax_sendcomment', 'bc_add_comment' );
+    add_action('wp_enqueue_scripts', 'bc_enqueue_comments_form_scripts');
+}
